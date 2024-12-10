@@ -11,7 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'auth.teamlead' => \App\Http\Middleware\Teamlead::class,
+            'auth.engineer' => \App\Http\Middleware\Engineer::class,
+            'auth.qc' => \App\Http\Middleware\QC::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
